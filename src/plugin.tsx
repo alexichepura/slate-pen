@@ -1,8 +1,15 @@
-import { Editor } from "slate"
-import { RenderElementProps, RenderLeafProps } from "slate-react"
+import { Editor, Text } from "slate"
+import { RenderElementProps as SlateRenderElementProps, RenderLeafProps } from "slate-react"
 import { SlatePen } from "./pen"
 
-export type TRenderElement = (props: RenderElementProps) => JSX.Element | null
+export type SlatePenRenderElementProps<T = Element> = {
+  children: any
+  element: T
+} & SlateRenderElementProps
+
+export type TRenderElement<T = Element> = (
+  props: SlatePenRenderElementProps<T>
+) => JSX.Element | null
 export type TRenderLeaf = (props: RenderLeafProps) => JSX.Element | null
 export type TExtendEditor = (editor: Editor, slatePen: SlatePen) => void
 
@@ -18,13 +25,16 @@ export type TToHtml<T extends TPartialNode = TPartialNode> = (
   slatePen: SlatePen
 ) => string | null
 export type TFromHtml = (htmlString: string) => (TSlateTypeElement | TPartialNode)[]
-export type TFromHtmlElement = (htmlElement: HTMLElement, slatePen: SlatePen) => any
+export type TFromHtmlElement<T = TSlateTypeElement> = (
+  htmlElement: HTMLElement,
+  slatePen: SlatePen
+) => T | Text[] | null
 
 export type TSlatePlugin<T = TPartialNode> = {
   toHtml?: TToHtml<T>
-  fromHtmlElement?: TFromHtmlElement
+  fromHtmlElement?: TFromHtmlElement<T>
   extendEditor?: TExtendEditor
-  RenderElement?: TRenderElement
+  RenderElement?: TRenderElement<T>
   RenderLeaf?: TRenderLeaf
 }
 

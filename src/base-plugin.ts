@@ -1,6 +1,6 @@
 import { TSlatePlugin } from "./plugin"
 
-export const createBasePlugin = (): TSlatePlugin => ({
+export const createBasePlugin = (): TSlatePlugin<any> => ({
   toHtml: (node, slatePen) => {
     if (Array.isArray(node)) {
       return node.map(n => slatePen.toHtml(n)).join("")

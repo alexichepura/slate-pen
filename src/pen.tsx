@@ -1,6 +1,6 @@
 import React, { createElement } from "react"
 import { Editor } from "slate"
-import { RenderElementProps, RenderLeafProps } from "slate-react"
+import { RenderLeafProps } from "slate-react"
 import {
   TRenderElement,
   TRenderLeaf,
@@ -9,6 +9,7 @@ import {
   TFromHtmlElement,
   TToHtml,
   TFromHtml,
+  SlatePenRenderElementProps,
 } from "./plugin"
 
 type TSlatePenInit = {
@@ -51,7 +52,7 @@ export class SlatePen {
     }
   }
 
-  RenderElement = (props: RenderElementProps) => {
+  RenderElement = (props: SlatePenRenderElementProps) => {
     const Element = this._plugins_RenderElement.find(r => {
       return r(props)
     })
@@ -116,7 +117,7 @@ export class SlatePen {
       .flat()
   }
 
-  nodeChildrenToHtml = (node: TPartialNode) => {
+  nodeChildrenToHtml = (node: any) => {
     const children =
       (Editor.isBlock(this.editor, node) || Editor.isInline(this.editor, node)) && node.children
         ? node.children.map(this.toHtml).join("")
