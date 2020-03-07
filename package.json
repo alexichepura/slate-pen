@@ -1,0 +1,40 @@
+{
+  "author": "Palessit",
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react-dom": "^16.9.4",
+    "react": ">=16.12.0",
+    "react-dom": ">=16.12.0",
+    "ts-node": "^8.5.4",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4"
+  },
+  "files": [
+    "dist/**(*.ts|*.js)",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "slate-pen",
+  "dependencies": {
+    "slate": "^0.57.1",
+    "slate-react": "^0.57.1"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-dom": "^16"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -r dist",
+    "rebuild": "yarn clean && yarn build",
+    "pack:dry": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
+  },
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "version": "0.57.1"
+}
