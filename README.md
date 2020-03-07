@@ -21,7 +21,7 @@ It currently supports these methods:
 ## Quick Example
 
 ```ts
-export const createYourVoidElementPlugin = (): TSlatePlugin => ({
+const createYourVoidElementPlugin = (): TSlatePlugin => ({
   extendEditor: editor => {
     const { isVoid } = editor
     editor.isVoid = element => {
@@ -46,6 +46,10 @@ export const createYourVoidElementPlugin = (): TSlatePlugin => ({
     }
     return null
   },
+})
+new SlatePen({
+  editor,
+  plugins: [..., createYourVoidElementPlugin()],
 })
 ```
 
