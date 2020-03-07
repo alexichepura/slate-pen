@@ -8,9 +8,7 @@ export const createBasePlugin = (): TSlatePlugin<any> => ({
 
     return null
   },
-  fromHtmlElement: (element, slatePen) => {
-    const el: Element = element as Element
-
+  fromHtmlElement: (el, slatePen) => {
     if (el.nodeName === "BODY") {
       const firstElementChild =
         el.children && Array.from(el.children).filter(child => child.nodeName !== "META")[0]

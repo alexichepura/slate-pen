@@ -1,5 +1,5 @@
 import React, { createElement } from "react"
-import { Editor } from "slate"
+import { Editor, Element as SlateElement } from "slate"
 import { RenderLeafProps } from "slate-react"
 import {
   TRenderElement,
@@ -52,7 +52,7 @@ export class SlatePen {
     }
   }
 
-  RenderElement = (props: SlatePenRenderElementProps) => {
+  RenderElement = (props: SlatePenRenderElementProps<SlateElement>) => {
     const Element = this._plugins_RenderElement.find(r => {
       return r(props)
     })

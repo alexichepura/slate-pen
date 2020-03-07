@@ -1,4 +1,4 @@
-import { Editor, Text } from "slate"
+import { Editor, Text, Element as SlateElement } from "slate"
 import { RenderElementProps as SlateRenderElementProps, RenderLeafProps } from "slate-react"
 import { SlatePen } from "./pen"
 
@@ -7,7 +7,7 @@ export type SlatePenRenderElementProps<T = Element> = {
   element: T
 } & SlateRenderElementProps
 
-export type TRenderElement<T = Element> = (
+export type TRenderElement<T = SlateElement> = (
   props: SlatePenRenderElementProps<T>
 ) => JSX.Element | null
 export type TRenderLeaf = (props: RenderLeafProps) => JSX.Element | null
