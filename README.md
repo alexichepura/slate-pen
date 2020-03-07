@@ -65,6 +65,10 @@ or
 yarn add slate-pen
 ```
 
+## Versioning
+
+We will follow slate.js minor versions until v1.
+
 ## License
 
 This project is licensed under the terms of the
