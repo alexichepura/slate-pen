@@ -20,8 +20,8 @@
   "main": "dist/index.js",
   "name": "slate-pen",
   "dependencies": {
-    "slate": "^0.57.1",
-    "slate-react": "^0.57.1"
+    "slate": "^0.58.1",
+    "slate-react": "^0.58.2"
   },
   "peerDependencies": {
     "react": "^16",
