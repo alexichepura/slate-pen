@@ -2,14 +2,14 @@ import React, { createElement } from "react"
 import { Editor, Element as SlateElement } from "slate"
 import { RenderLeafProps } from "slate-react"
 import {
+  SlatePenRenderElementProps,
+  TFromHtml,
+  TFromHtmlElement,
+  TPartialNode,
   TRenderElement,
   TRenderLeaf,
   TSlatePlugin,
-  TPartialNode,
-  TFromHtmlElement,
   TToHtml,
-  TFromHtml,
-  SlatePenRenderElementProps,
 } from "./plugin"
 
 type TSlatePenInit = {
@@ -53,7 +53,7 @@ export class SlatePen {
   }
 
   RenderElement = (props: SlatePenRenderElementProps<SlateElement>) => {
-    const Element = this._plugins_RenderElement.find(r => {
+    const Element = this._plugins_RenderElement.find((r) => {
       return r(props)
     })
     if (Element) {
@@ -65,7 +65,7 @@ export class SlatePen {
 
   RenderLeaf = (props: RenderLeafProps): JSX.Element => {
     let found
-    this._plugins_RenderLeaf.some(renderLeaf => {
+    this._plugins_RenderLeaf.some((renderLeaf) => {
       const leaf = renderLeaf(props)
       if (leaf) {
         found = leaf
@@ -81,7 +81,7 @@ export class SlatePen {
 
   fromHtmlElement = (element: HTMLElement): any => {
     let node = null
-    this._plugins_fromHtmlElement.some(from => {
+    this._plugins_fromHtmlElement.some((from) => {
       const _node = from(element, this)
       if (_node) {
         node = _node
@@ -94,9 +94,9 @@ export class SlatePen {
 
   toHtml = (node: TPartialNode) => {
     let html = ""
-    this._plugins_toHtml.some(to => {
+    this._plugins_toHtml.some((to) => {
       const _html = to(node, this)
-      if (_html === null) {
+      if (!_html) {
         return false
       } else {
         html = _html
@@ -106,14 +106,14 @@ export class SlatePen {
     return html
   }
 
-  fromHtml: TFromHtml = html => {
+  fromHtml: TFromHtml = (html) => {
     const parsed = new DOMParser().parseFromString(html, "text/html")
     return this.fromHtmlElement(parsed.body)
   }
 
   fromHtmlChildNodes = (nodes: NodeListOf<ChildNode> | HTMLCollection) => {
     return Array.from(nodes)
-      .map(el => this.fromHtmlElement(el as HTMLElement))
+      .map((el) => this.fromHtmlElement(el as HTMLElement))
       .flat()
   }
 
